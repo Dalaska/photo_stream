@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Player</title>
+    <style>
+        /* Optional: Style the video container */
+        #video-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        #myVideo {
+            max-width: 100%;
+            height: auto;
+        }
+        #fullscreen-btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <h1>Video Player</h1>
+        <video id="myVideo" controls>
+            <source src="{{ url_for('static', filename='videos/your_video.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <br>
+        <button id="fullscreen-btn">Full Screen</button>
+    </div>
+
+    <script>
+        document.getElementById('fullscreen-btn').addEventListener('click', function() {
+            var videoElement = document.getElementById('myVideo');
+            if (videoElement.requestFullscreen) {
+                videoElement.requestFullscreen();
+            } else if (videoElement.mozRequestFullScreen) { /* Firefox */
+                videoElement.mozRequestFullScreen();
+            } else if (videoElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                videoElement.webkitRequestFullscreen();
+            } else if (videoElement.msRequestFullscreen) { /* IE/Edge */
+                videoElement.msRequestFullscreen();
+            }
+        });
+    </script>
+</body>
+</html>
